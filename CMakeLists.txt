@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(Randomization
         Card.h
         Card.cpp
-        Deck.h
+        Collection.h
         main.cpp)
