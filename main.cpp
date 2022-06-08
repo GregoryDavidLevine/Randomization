@@ -102,6 +102,43 @@ int main()
         }
     }
     cout << "Done." << endl;
+    // Test with a sorted deck in reverse order.
+    reverse(sortedCards.begin(), sortedCards.end());
+    cout << "Testing gdlevineRandomize with a sorted deck in reverse order (and gathering data, which takes the bulk of the time)..." << endl;
+    gdlevineItemsPlacementMatrix[2] = vector<int>(sortedCards.size());
+    for(int i = 0; i < 100; i++)
+    {
+        Collection<Card> reversedDeck;
+        reversedDeck.setItems(sortedCards);
+
+        auto startMilli = chrono::steady_clock::now();
+        reversedDeck.gdlevineRandomize();
+        gdlevineRuntimesMatrix[2].push_back(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startMilli).count());
+
+        for(int j = 0; j < reversedDeck.getItems().size(); j++)
+        {
+            gdlevineItemsPlacementMatrix[2][j] += reversedDeck.getItemsNewPosByOldIndex()[j];
+        }
+    }
+    cout << "Done." << endl;
+    // Test with already-random decks.
+    Collection<Card> randDeck;
+    randDeck.setItems(stdCards);
+    randDeck.gdlevineRandomize();
+    cout << "Testing gdlevineRandomize with already-random decks (and gathering data, which takes the bulk of the time)..." << endl;
+    gdlevineItemsPlacementMatrix[3] = vector<int>(stdCards.size());
+    for(int i = 0; i < 100; i++)
+    {
+        auto startMilli = chrono::steady_clock::now();
+        randDeck.gdlevineRandomize();
+        gdlevineRuntimesMatrix[3].push_back(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startMilli).count());
+
+        for(int j = 0; j < randDeck.getItems().size(); j++)
+        {
+            gdlevineItemsPlacementMatrix[3][j] += randDeck.getItemsNewPosByOldIndex()[j];
+        }
+    }
+    cout << "Done." << endl;
     // Test with a small deck.
     vector<Card> smallCards;
     smallCards.push_back(Card(Card::ace, Card::clubs, 0));
