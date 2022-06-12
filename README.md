@@ -1,7 +1,7 @@
 # Randomization
 
 ### NOTE:
-### This was part of a group project in which I and one collaborator each developer our own randomization algorithms with the goal of maximizing randomness and efficiency (and without using built-in randomness).
+### This was part of a group project in which I and one collaborator each developed our own randomization algorithms with the goal of maximizing randomness and efficiency (and without using built-in randomness).
 ### I excluded the collaborator's algorithm, but everything else is almost exactly the same.
 ### The purpose of main.cpp was to test each of our algorithms, which I decided to do with different sizes of Collections and different starting sortedness states. This main.cpp does so with only my own algorithm.
 
